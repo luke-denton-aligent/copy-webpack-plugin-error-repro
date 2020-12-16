@@ -4,6 +4,7 @@ const {
 } = require('@magento/pwa-buildpack');
 const { DefinePlugin } = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const staticAssetsCopyPlugin = require('./webpack.staticAssetsCopy');
 
 module.exports = async env => {
     const mediaUrl = await getMediaURL();
@@ -68,6 +69,8 @@ module.exports = async env => {
             }
         })
     ];
+
+    config.plugins.push(staticAssetsCopyPlugin);
 
     return config;
 };
